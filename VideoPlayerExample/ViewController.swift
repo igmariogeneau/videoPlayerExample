@@ -1,25 +1,28 @@
-//
-//  ViewController.swift
-//  VideoPlayerExample
-//
-//  Created by eleves on 17-07-11.
-//  Copyright © 2017 eleves. All rights reserved.
-//
 
 import UIKit
 
 class ViewController: UIViewController {
-
+    //---------------------
+    @IBOutlet weak var theView: UIView!
+    var videoObj: VideoPlayer!
+    var regle3: (Int, Int, Int) -> Int = {
+        $1 * $2 / $0
+    }
+    //---------------------
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        theView.frame.size.width = 159
+        theView.frame.size.height = CGFloat(regle3(640, 360, 159))
+        
+        
+        videoObj = VideoPlayer(
+            theURL: "http://www.igweb.tv/vids/red.mp4",
+            theWidth: 159,
+            theHeight: regle3(640, 360, 159))
+        
+        videoObj.displayVideo(theView: theView)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
+    //---------------------
 }
 
